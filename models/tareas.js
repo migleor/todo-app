@@ -42,7 +42,7 @@ class Tareas {
         this.listadoArr.forEach(({ desc, completadoEn}) => {
             let completado = completadoEn;
             if(completado!==null && sw){
-                console.log(`${cont.toString().green} ${desc} :: ${'Completado'.green}`);
+                console.log(`${cont.toString().green} ${desc} :: ${ completadoEn.green }`);
                 cont++;  
             }else if(!sw && completado===null){
                 console.log(`${cont.toString().red} ${desc} :: ${'Pendiente'.red}`);
