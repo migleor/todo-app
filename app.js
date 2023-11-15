@@ -1,5 +1,11 @@
 import colors from 'colors';
-import { inquirerMenu, pause, leerInput } from './helpers/inquirer.js';
+import { 
+    inquirerMenu,
+    pause,
+    leerInput,
+    menuTareasBorrar,
+    confirm 
+} from './helpers/inquirer.js';
 import { Tareas } from './models/tareas.js';
 import { createFileDB, readFile } from './helpers/manageFiles.js';
 import { Tarea } from './models/tarea.js';
@@ -33,7 +39,19 @@ const main = async() => {
 
             case '4':
                 tareas.tareasByStatus(false);
-            break;            
+            break;     
+            
+            case '6':
+                const idDel = await menuTareasBorrar(tareas.listadoArr);
+                if(idDel!=='0'){
+                    const ok = await confirm('Realmente desea eliminar la tarea?'.red);
+                    if(ok){
+                        console.log(idDel);
+                        tareas.deleteTask(idDel);
+                        console.log('Tarea eliminada exitosamente'.green)
+                    }
+                }
+            break;
 
         }
 
