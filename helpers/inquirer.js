@@ -99,6 +99,32 @@ const menuTareasBorrar = async (tareas = []) => {
     return id;
 }
 
+const menuTareasUpdate = async (tareas = []) => {
+    const choices = tareas.map( (tarea, i) => {
+        const idx = `${i+1}.`.green;
+        return {
+            value: tarea.id,
+            name: ` ${idx} ${tarea.desc} `,
+            checked: (tarea.completadoEn) ? true : false
+        }
+    });
+
+    const questions = [
+        {
+            type: 'checkbox',
+            name: 'ids',
+            message: 'Selecciones',
+            choices
+        }
+    ];
+    console.clear();
+    console.log("==============================================".green.bold);
+    console.log("  SELECCIONE LA(S) TAREA QUE DESEA COMPLETAR  ".white.bold);
+    console.log("==============================================\n".green.bold);    
+    const { ids } = await inquirer.prompt(questions);
+    return ids;
+}
+
 const confirm = async ( message ) => {
     const question = [
         {
@@ -116,5 +142,6 @@ export {
     pause,
     leerInput,
     menuTareasBorrar,
-    confirm
+    confirm,
+    menuTareasUpdate
 };

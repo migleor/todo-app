@@ -4,7 +4,8 @@ import {
     pause,
     leerInput,
     menuTareasBorrar,
-    confirm 
+    confirm,
+    menuTareasUpdate
 } from './helpers/inquirer.js';
 import { Tareas } from './models/tareas.js';
 import { createFileDB, readFile } from './helpers/manageFiles.js';
@@ -41,6 +42,12 @@ const main = async() => {
                 tareas.tareasByStatus(false);
             break;     
             
+            case '5':
+                const ids = await menuTareasUpdate(tareas.listadoArr);
+                tareas.toogleStatusTask(ids);
+                console.log('Tareas actualizadas exitosamente'.green);
+            break;
+
             case '6':
                 const idDel = await menuTareasBorrar(tareas.listadoArr);
                 if(idDel!=='0'){
