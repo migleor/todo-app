@@ -1,5 +1,15 @@
 # todo-app
 Nodejs console application
 
+## Installation
 
-After clone git repositoty please run npm install ans after npm run dev
+Use npm package manager
+
+```bash
+npm install
+```
+
+## Usage
+```bash
+node app
+```
